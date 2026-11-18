@@ -22,6 +22,7 @@ document.getElementById('languageToggle').addEventListener('click', () => {
 
   document.getElementById('languageToggle').textContent =
     currentLanguage === 'en' ? 'हिन्दी' : 'English';
+renderCountries();
 });
 
 // Travel Budget
