@@ -156,13 +156,17 @@ const hindiCountryNames = {'भारत':'india','जापान':'japan','फ
 const query = hindiCountryNames[rawQuery] || rawQuery;  
   const region = regionFilter.value;
 
-  const mappedName = hindiCountryNames[rawQuery];
+  const searchName = query;
+
+const exactMatchExists = countries.some(country =>
+  country.name.common.toLowerCase() === searchName
+);
 
 const list = countries.filter(country => {
   const countryName = country.name.common.toLowerCase();
 
-  const matchesSearch = mappedName
-    ? countryName === mappedName
+  const matchesSearch = exactMatchExists
+    ? countryName === searchName
     : (!query || countryName.includes(query));
 
   return matchesSearch &&
@@ -170,6 +174,7 @@ const list = countries.filter(country => {
 }).sort((a, b) =>
   a.name.common.localeCompare(b.name.common)
 );
+
 
   document.getElementById('countryCount').textContent =
     `${list.length} countries shown`;
