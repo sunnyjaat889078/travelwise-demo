@@ -152,7 +152,7 @@ function safeText(value) {
 
 // Render Countries
 function renderCountries() {
-const rawQuery = countrySearch.value.trim().toLowerCase();
+const rawQuery = countrySearch.value.trim().toLowerCase(); const searchIsHindi = /[\u0900-\u097F]/.test(rawQuery);
 const hindiCountryNames = {'भारत':'india','जापान':'japan','फ्रांस':'france','इटली':'italy','अमेरिका':'united states','ऑस्ट्रेलिया':'australia','थाईलैंड':'thailand','स्विट्जरलैंड':'switzerland'};
 const query = hindiCountryNames[rawQuery] || rawQuery;  
   const region = regionFilter.value;
@@ -208,10 +208,10 @@ const hindiNames = {
   'Thailand': 'थाईलैंड',
   'Switzerland': 'स्विट्ज़रलैंड'
 };
-
-strong.textContent = currentLanguage === 'hi'
+strong.textContent = searchIsHindi
   ? (hindiNames[country.name.common] || country.name.common)
   : country.name.common;
+
     
     small.textContent = country.region || 'Region unavailable';
 
