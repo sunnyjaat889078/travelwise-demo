@@ -291,7 +291,7 @@ async function loadCountries() {
 
   try {
     const response = await fetch(
-    https://restcountries.conventus.de/v3.1/all?fields=name,capital,region,currencies,languages,flags,population,cca3
+    'https://restcountries.conventus.de/v3.1/all?fields=name,capital,region,currencies,languages,flags,population,cca3'
     );
 
     if (!response.ok) {
