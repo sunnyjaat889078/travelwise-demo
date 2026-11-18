@@ -291,7 +291,7 @@ async function loadCountries() {
 
   try {
     const response = await fetch(
-      'https://restcountries.com/v3.1/all?fields=name,capital,region,currencies,languages,flags,population,cca3,independent'
+    https://restcountries.conventus.de/v3.1/all?fields=name,capital,region,currencies,languages,flags,population,cca3
     );
 
     if (!response.ok) {
@@ -301,12 +301,11 @@ async function loadCountries() {
     const data = await response.json();
 
     countries = data.filter(country =>
-      country.independent === true &&
-      country.name?.common &&
-      country.region
-    ).sort((a,b) =>
-      a.name.common.localeCompare(b.name.common)
-    );
+  country.name?.common &&
+  country.region
+).sort((a, b) =>
+  a.name.common.localeCompare(b.name.common)
+);
 
     note.textContent =
       'Country information loaded from the REST Countries public data service.';
