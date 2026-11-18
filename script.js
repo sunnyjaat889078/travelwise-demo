@@ -197,12 +197,21 @@ const list = countries.filter(country => {
     img.src = country.flags?.png || country.flags?.svg || '';
     img.alt = `${country.name.common} flag`;
     img.loading = 'lazy';
+const hindiNames = {
+  'India': 'भारत',
+  'Japan': 'जापान',
+  'France': 'फ्रांस',
+  'Italy': 'इटली',
+  'United States': 'संयुक्त राज्य अमेरिका',
+  'Australia': 'ऑस्ट्रेलिया',
+  'Thailand': 'थाईलैंड',
+  'Switzerland': 'स्विट्ज़रलैंड'
+};
 
-    const box = document.createElement('span');
-    const strong = document.createElement('strong');
-    const small = document.createElement('small');
-
-    strong.textContent = country.name.common;
+strong.textContent = currentLanguage === 'hi'
+  ? (hindiNames[country.name.common] || country.name.common)
+  : country.name.common;
+    
     small.textContent = country.region || 'Region unavailable';
 
     box.append(strong, small);
