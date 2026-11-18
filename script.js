@@ -288,7 +288,9 @@ regionFilter.addEventListener('change', renderCountries);
 // Load World Countries
 async function loadCountries() {
   const note = document.getElementById('countryNote');
-
+countries = fallbackCountries;
+renderCountries();
+note.textContent = 'Showing sample countries while live directory loads.';
   try {
     const response = await fetch(
     'https://restcountries.conventus.de/v3.1/all?fields=name,capital,region,currencies,languages,flags,population,cca3'
