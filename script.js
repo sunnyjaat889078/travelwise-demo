@@ -156,14 +156,20 @@ const hindiCountryNames = {'भारत':'india','जापान':'japan','फ
 const query = hindiCountryNames[rawQuery] || rawQuery;  
   const region = regionFilter.value;
 
-  const list = countries.filter(country => {
-    return (
-      (!query || country.name.common.toLowerCase().includes(query)) &&
-      (!region || country.region === region)
-    );
-  }).sort((a,b) =>
-    a.name.common.localeCompare(b.name.common)
-  );
+  const mappedName = hindiCountryNames[rawQuery];
+
+const list = countries.filter(country => {
+  const countryName = country.name.common.toLowerCase();
+
+  const matchesSearch = mappedName
+    ? countryName === mappedName
+    : (!query || countryName.includes(query));
+
+  return matchesSearch &&
+    (!region || country.region === region);
+}).sort((a, b) =>
+  a.name.common.localeCompare(b.name.common)
+);
 
   document.getElementById('countryCount').textContent =
     `${list.length} countries shown`;
